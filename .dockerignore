@@ -1,0 +1,11 @@
+*.pth
+*.engine
+*.trt
+*.onnx
+*.jpg
+*.json
+*.mp4
+output/
+datasets/
+weight/
+nohup.out
