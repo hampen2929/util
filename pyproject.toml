@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "tennis-pro-data"
+name = "utili"
 version = "v0.0.1"
 description = ""
 authors = ["hampen2929"]
 packages = [
-    { include = "tennis_pro_data" }
+    { include = "util" }
 ]
 
 [tool.poetry.dependencies]
@@ -31,6 +31,9 @@ thop = {version = "0.0.31.post2005241907", python="^3.7", optional = true}
 imgaug = {version = "0.2.5", python="^3.7", optional = true}
 
 pytest = {version = "7.0.1", python="^3.7", optional = true}
+pytest-cov = {version = "3.0.0", python="^3.7", optional = true}
+pytest-html = {version = "3.1.1", python="^3.7", optional = true}
+
 mypy = {version = "0.931", python="^3.7", optional = true}
 flake8 = {version = "4.0.1", python="^3.7", optional = true}
 isort = {version = "5.10.1", python="^3.7", optional = true}
