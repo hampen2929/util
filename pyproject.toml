@@ -20,7 +20,6 @@ torchvision = [
 
 hydra = {version = "2.5", python="^3.7", optional = true}
 hydra-core = {version = "1.1.1", python="^3.7", optional = true}
-loguru = {version = "0.6.0", python="^3.7", optional = true}
 opencv_python = {version = "4.5.5.62", python="^3.7", optional = true}
 tensorboard = {version = "2.8.0", python="^3.7", optional = true}
 pycocotools = {version = "2.0.4", python="^3.7", optional = true}
@@ -30,6 +29,7 @@ onnx = {version = "1.8.1", python="^3.7", optional = true}
 thop = {version = "0.0.31.post2005241907", python="^3.7", optional = true}
 imgaug = {version = "0.2.5", python="^3.7", optional = true}
 
+loguru = {version = "0.6.0", python="^3.7", optional = true}
 pytest = {version = "7.0.1", python="^3.7", optional = true}
 pytest-cov = {version = "3.0.0", python="^3.7", optional = true}
 pytest-html = {version = "3.1.1", python="^3.7", optional = true}
@@ -40,9 +40,9 @@ isort = {version = "5.10.1", python="^3.7", optional = true}
 black = {version = "22.1.0", python="^3.7", optional = true}
 
 [tool.poetry.extras]
-core = ["hydra", "hydra-core", "loguru", "opencv_python", "tensorboard", "pycocotools", "tabulate", "thop"]
+core = ["hydra", "hydra-core", "opencv_python", "tensorboard", "pycocotools", "tabulate", "thop"]
 pytorch-cu113 = ["torch", "torchvision"]
-dev = ["pytest", "mypy", "flake8", "isort", "black"]
+dev = ["loguru", "pytest", "mypy", "flake8", "isort", "black"]
 
 [tool.black]
 line-length = 120
