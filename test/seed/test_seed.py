@@ -5,5 +5,6 @@ def test_set_numpy_seed() -> None:
     import numpy as np
 
     set_numpy_seed(seed)
-    state = np.random.get_state()
-    assert seed == state[1][0]
+    arr: np.ndarray
+    _, arr, _, _, _ = np.random.get_state()  # type: ignore
+    assert seed == arr[0]
