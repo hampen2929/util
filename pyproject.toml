@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "utili"
+version = "v0.0.1"
+description = ""
+authors = ["hampen2929"]
+packages = [
+    { include = "util" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+torch = [
+    {url = "https://download.pytorch.org/whl/cu113/torch-1.10.2%2Bcu113-cp37-cp37m-linux_x86_64.whl", markers = "python_version == '3.7' and extra == 'pytorch-cu113'", optional = true},
+    {url = "https://download.pytorch.org/whl/cu113/torch-1.10.2%2Bcu113-cp38-cp38-linux_x86_64.whl", markers = "python_version >= '3.8' and extra == 'pytorch-cu113'", optional = true},
+]
+torchvision = [
+    {url = "https://download.pytorch.org/whl/cu113/torchvision-0.11.3%2Bcu113-cp37-cp37m-linux_x86_64.whl", markers = "python_version == '3.7' and extra == 'pytorch-cu113'", optional = true},
+    {url = "https://download.pytorch.org/whl/cu113/torchvision-0.11.3%2Bcu113-cp38-cp38-linux_x86_64.whl", markers = "python_version >= '3.8' and extra == 'pytorch-cu113'", optional = true},
+]
+
+hydra = {version = "2.5", python="^3.7", optional = true}
+hydra-core = {version = "1.1.1", python="^3.7", optional = true}
+opencv_python = {version = "4.5.5.62", python="^3.7", optional = true}
+tensorboard = {version = "2.8.0", python="^3.7", optional = true}
+pycocotools = {version = "2.0.4", python="^3.7", optional = true}
+tabulate = {version = "0.8.9", python="^3.7", optional = true}
+tqdm = {version = "4.63.0", python="^3.7", optional = true}
+onnx = {version = "1.8.1", python="^3.7", optional = true}
+thop = {version = "0.0.31.post2005241907", python="^3.7", optional = true}
+imgaug = {version = "0.2.5", python="^3.7", optional = true}
+
+loguru = {version = "0.6.0", python="^3.7", optional = true}
+pytest = {version = "7.0.1", python="^3.7", optional = true}
+pytest-cov = {version = "3.0.0", python="^3.7", optional = true}
+pytest-html = {version = "3.1.1", python="^3.7", optional = true}
+
+mypy = {version = "0.931", python="^3.7", optional = true}
+flake8 = {version = "4.0.1", python="^3.7", optional = true}
+isort = {version = "5.10.1", python="^3.7", optional = true}
+black = {version = "22.1.0", python="^3.7", optional = true}
+
+[tool.poetry.extras]
+core = ["hydra", "hydra-core", "opencv_python", "tensorboard", "pycocotools", "tabulate", "thop"]
+pytorch-cu113 = ["torch", "torchvision"]
+dev = ["loguru", "pytest", "mypy", "flake8", "isort", "black"]
+
+[tool.black]
+line-length = 120
+exclude = '''
+(
+    \.git
+    | __pycache__
+    | \.mypy_cache
+    | \.pytest_cache
+    | \.venv
+)
+'''
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
