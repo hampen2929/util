@@ -2,7 +2,7 @@ import functools
 import os
 import time
 from collections import defaultdict, deque
-from typing import Optional, Tuple
+from typing import Any, Deque, Dict, Optional, Tuple
 
 import numpy as np
 import torch
@@ -49,7 +49,7 @@ class AverageMeter:
     """
 
     def __init__(self, window_size: int = 50) -> None:
-        self._deque = deque(maxlen=window_size)
+        self._deque: Deque = deque(maxlen=window_size)
         self._total = 0.0
         self._count = 0
 
@@ -59,7 +59,7 @@ class AverageMeter:
         self._total += value
 
     @property
-    def median(self):
+    def median(self) -> float:
         d = np.array(list(self._deque))
         return np.median(d)
 
@@ -74,7 +74,7 @@ class AverageMeter:
         return self._total / max(self._count, 1e-5)
 
     @property
-    def latest(self) -> deque:
+    def latest(self) -> Deque:
         return self._deque[-1] if len(self._deque) > 0 else None
 
     @property
@@ -93,7 +93,7 @@ class AverageMeter:
 class MeterBuffer(defaultdict):
     """Computes and stores the average and current value"""
 
-    def __init__(self, window_size=20):
+    def __init__(self, window_size: int = 20) -> None:
         factory = functools.partial(AverageMeter, window_size=window_size)
         super().__init__(factory)
 
@@ -101,10 +101,10 @@ class MeterBuffer(defaultdict):
         for v in self.values():
             v.reset()
 
-    def get_filtered_meter(self, filter_key: str = "time"):
+    def get_filtered_meter(self, filter_key: str = "time") -> Dict:
         return {k: v for k, v in self.items() if filter_key in k}
 
-    def update(self, values: Optional[float] = None, **kwargs) -> None:
+    def update(self, values: Optional[Dict] = None, **kwargs: Dict[Any, Any]) -> None:  # type: ignore
         if values is None:
             values = {}
         values.update(kwargs)
