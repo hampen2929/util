@@ -1,38 +1,38 @@
-# name: Pytest
+name: Pytest
 
-# on: [push]
+on: [push]
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-20.04
+jobs:
+  build:
+    runs-on: ubuntu-20.04
     
-#     steps:
-#     - uses: actions/checkout@v2
+    steps:
+    - uses: actions/checkout@v2
 
-#     - name: Setup Python 3.8
-#       uses: actions/setup-python@v1
-#       with:
-#         python-version: 3.8
+    - name: Setup Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
     
-#     - name: Create env
-#       run:
-#         python -m venv .venv
+    - name: Create env
+      run:
+        python -m venv .venv
     
-#     - name: Cache
-#       id: cache
-#       uses: actions/cache@v2
-#       with: 
-#         path: ./.venv/
-#         key: ${{ runner.os }}-cache-v1-${{ hashFiles('pyproject.toml') }}
-#         restore-keys: |
-#           ${{ runner.os }}-cache-v1-${{ hashFiles('pyproject.toml') }}
+    - name: Cache
+      id: cache
+      uses: actions/cache@v2
+      with: 
+        path: ./.venv/
+        key: ${{ runner.os }}-cache-v1-${{ hashFiles('pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-cache-v1-${{ hashFiles('pyproject.toml') }}
     
-#     - name: Install
-#       run: |
-#         python -m venv ./.venv
-#         . ./.venv/bin/activate
-#         pip install .[dev]
-#       if: steps.cache-venv.outputs.cache-hit != 'true'
+    - name: Install
+      run: |
+        python -m venv ./.venv
+        . ./.venv/bin/activate
+        pip install .[dev]
+      if: steps.cache-venv.outputs.cache-hit != 'true'
     
-#     - name: Run pytest
-#       run: . ./.venv/bin/activate && python -m pytest test
+    - name: Run pytest
+      run: . ./.venv/bin/activate && python -m pytest test
